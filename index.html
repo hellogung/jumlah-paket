@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container py-3">
+        <h1 class="fw-bold mb-3">Pilih Paket</h1>
+        <div class="input-group gap-2 fs-3">
+            <input type="checkbox" id="paket-1" class="paket" data-price="10000">
+            <label for="paket-1">Paket 1 (10rb)</label>
+        </div>
+
+        <div class="input-group gap-2 fs-3">
+
+            <input type="checkbox" id="paket-2" class="paket" data-price="20000">
+            <label for="paket-2">Paket 2 (20rb)</label>
+        </div>
+
+        <div class="input-group gap-2 fs-3">
+
+            <input type="checkbox" id="paket-3" class="paket" data-price="30000">
+            <label for="paket-3">Paket 3 (30rb)</label>
+        </div>
+
+        <div class="input-group gap-2 fs-3">
+
+            <input type="checkbox" id="paket-4" class="paket" data-price="5000">
+            <label for="paket-4">Paket 4 (5rb)</label>
+        </div>
+
+        <div class="input-group gap-2 fs-3">
+
+            <input type="checkbox" id="paket-5" class="paket" data-price="1000">
+            <label for="paket-5">Paket 5 (1rb)</label>
+        </div>
+
+    </div>
+    <div class="fixed-bottom w-full bg-primary py-3 text-end fw-bold text-white">
+        <div class="container fs-4">
+            Jumlah = Rp. <span class="jumlah">0</span>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.addEventListener("load", () => {
+            jumlahkan()
+        })
+
+        // Menjumlahkan paket yang dipilih saja 
+        const checkboxs = document.querySelectorAll("input[type=checkbox]")
+        checkboxs.forEach((checkbox) => {
+            checkbox.addEventListener("change", () => {
+                jumlahkan()
+            })
+        })
+
+        // Menjumlahkan harga paket
+        const jumlahkan = () => {
+            const pakets = document.querySelectorAll(".paket")
+            let jumlah = 0
+            pakets.forEach((paket) => {
+                if (paket.checked == true) {
+                    jumlah += Number(paket.dataset.price)
+                }
+            })
+            updateJumlah(jumlah)
+        }
+
+
+        // Update Tampilan Jumlah
+        const updateJumlah = (hasil) => {
+            const jumlah = document.querySelector(".jumlah")
+            jumlah.innerHTML = hasil.toLocaleString('en-US')
+        }
+    </script>
+</body>
+
+</html>
